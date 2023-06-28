@@ -1,0 +1,49 @@
+<div class="row">
+  <!--ingredient name-->
+  <div class="form-group m-2 col">
+    <label class="form-label labelMarginStd" [for]="dataListId">Zutaten:</label>
+
+    <input type="text" class="form-control" [attr.list]="dataListId" [ngClass]="datalistClass" [(ngModel)]="ingredientInputText"
+      (ngModelChange)="ingredientInputChange.next($event)" (ngModelInit)="ingredientInputChange.next($event)"
+      [disabled]="disabled">
+
+    <datalist [id]="dataListId" [ngClass]="datalistClass">
+      <option *ngFor="let candidateEntry of valueCandidates | keyvalue"
+        [value]="formatIngredientName(candidateEntry.value)">
+    </datalist>
+
+    <div *ngIf="!matchesSuggestion" class="alert">
+      <label class="text-danger">Zutat nicht bekannt:
+        <button type="button" class="btn btn-secondary btn-block textColor justify-content-end"
+          (click)="openIngredientCreator()"> Als neue zutat hinzufügen?</button>
+      </label>
+    </div>
+  <!--Amount input-->
+  </div>
+  <div class="form-group m-2 col">
+    <label class="form-label labelMarginStd" for="amountInput">Menge:</label>
+    <input type="number" min="0" class="form-control" id="amountInput" name="amount" placeholder="Menge"
+           [(ngModel)]="amount.amount" #number="ngModel" required>
+    <div *ngIf="number.invalid"
+         class="alert">
+      <div *ngIf="number.errors?.['required']">
+        <label class="text-danger"> Menge muss eine Zahl sein.</label>
+      </div>
+    </div>
+    <!--Unit selector-->
+  </div>
+    <div class="form-group m-2 col">
+      <label class="form-label labelMarginStd" for="unitInput">Einheit:</label>
+      <select class="form-control" id="unitInput" name="unit" placeholder="Einheit" [(ngModel)]="amount.unit">
+        <option *ngFor="let category of values(unit)" [value]="category">{{category | unit}}</option>
+      </select>
+    </div>
+    <!-- delete button-->
+    <div class="form-group m-2 col-auto">
+      <label class="form-label invisible" for="delete-button" >Löschen</label>
+      <button type="button" id="delete-button" title="Löschen" class="btn btn-danger form-control" (click)="emitRemoveIngredientEvent()" >
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+
+  </div>

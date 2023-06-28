@@ -1,0 +1,60 @@
+<div class="card m-2">
+    <form id="wineForm" name="wineForm" class="needs-validation" #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="row">
+            <div class="form-group m-2 col">
+                <label class="form-label labelMarginStd" for="nameInput">Name:</label>
+                <input type="text" class="form-control" id="nameInput" name="name" placeholder="Name" [(ngModel)]="wine.name" required>
+                <div class="invalid-feedback">
+                    <!-- This is shown, when the form validation deems the name input to be invalid -->
+                    Name is required
+                </div>
+            </div>
+            <div class="form-group m-2 col">
+                <label class="form-label labelMarginStd" for="categoryInput">Kategorie:</label>
+                <select  class="form-control" id="categoryInput" name="category" placeholder="Kategorie" [(ngModel)]="wine.category" required>
+                    <option *ngFor="let category of values(categories)" [value]="category">{{category | wineCategory}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group m-2 col">
+                <label class="form-label labelMarginStd" for="descriptionInput">Beschreibung:</label>
+                <textarea class="form-control" id="descriptionInput" name="description" placeholder="Beschreibung" [(ngModel)]="wine.description"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group m-2 col-8">
+                <label class="form-label labelMarginStd" for="vinyardInput">Weingut:</label>
+                <input type="text" class="form-control" id="vinyardInput" name="vinyard" placeholder="Weingut" [(ngModel)]="wine.vinyard" required>
+            </div>
+            <div class="form-group m-2 col">
+                <label class="form-label labelMarginStd" for="countryInput">Land:</label>
+                <select  class="form-control" id="countryInput" placeholder="Land" name="country" [(ngModel)]="wine.country">
+                    <option *ngFor="let country of countryList" [value]="country.code">{{country.name}} </option>
+                </select>
+            </div>
+            <div class="form-group m-2 col">
+                <label class="form-label labelMarginStd" for="temperatureInput">Temperatur:</label>
+                <input type="number" class="form-control" id="temperatureInput" name="temperature" placeholder="Temperatur" min="-40.0" max="100.0" [(ngModel)]="wine.temperature" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group m-2 col">
+                <label class="form-label labelMarginStd" for="grapeInput">Trauben:</label>
+                <input type="text" class="form-control" id="grapeInput" placeholder="Trauben" name="grapes" [(ngModel)]="wine.grape">
+            </div>
+            <div class="form-group m-2 col">
+                <label class="form-label labelMarginStd" for="linkInput">Informationen:</label>
+                <input type="url" class="form-control" id="linkInput" placeholder="Link" name="link" [(ngModel)]="wine.link">
+            </div>
+        </div>
+        <div class="row m-2" *ngIf="create">
+            <button type="submit" class="btn btn-primary btn-block text-white" *ngIf="form.valid" >Hinzufügen</button>
+            <button type="submit" class="btn btn-danger btn-block text-white" *ngIf="!form.valid" [disabled]="true">Hinzufügen</button>
+        </div>
+        <div class="row m-2" *ngIf="!create">
+            <button type="submit" class="btn btn-primary btn-block text-white" *ngIf="form.valid">Speichern</button>
+            <button type="submit" class="btn btn-danger btn-block text-white" *ngIf="!form.valid" [disabled]="true">Speichern</button>
+        </div>
+    </form>
+</div>

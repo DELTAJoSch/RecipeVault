@@ -1,0 +1,51 @@
+<div class="pageView">
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-outline-primary" (click)="onPreviousClick()" title="Vorherige Seite" ><i class="bi bi-caret-left"></i></button>
+        </div>
+        <div class="col text-center">
+            <p>SEITE {{page + 1}} | ELEMENT {{getElementLowerBound()}}-{{getElementUpperBound()}}</p>
+        </div>
+        <div class="col float-end text-end">
+            <button class="btn btn-outline-primary" (click)="onNextClick()" title="Nächste Seite"><i class="bi bi-caret-right"></i></button>
+        </div>
+    </div>
+</div>
+<div class="elementSearch">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col text-center">
+            <div class="btn-group">
+                <button class="btn btn-outline-primary" (click)="toggleSearch()" >Suche <i class="bi bi-search"></i></button>
+                <button class="btn btn-primary" [routerLink]="['create']" title="Neues Rezept erstellen"><i class="bi bi-plus-circle text-white"></i></button>
+            </div>
+        </div>
+        <div class="col float-end text-end">
+        </div>
+    </div>
+    <div class="card searchForm" *ngIf="searchIsVisible" [@visibleHidden]="searchIsVisible ? 'search-visible' : 'search-hidden'">
+        <div class="row">
+            <div class="col">
+                <form id="recipeForm" name="recipeForm" class="needs-validation" #form="ngForm">
+                    <div class="row">
+                        <div class="form-group m-2 col">
+                            <label class="form-label labelMarginStd" for="nameInput">Name:</label>
+                            <input type="text" class="form-control" id="nameInput" name="name" placeholder="Name" [(ngModel)]="searchName">
+                        </div>
+                        <div class="form-group m-2 col">
+                            <label class="form-label labelMarginStd" for="categoryInput">Schwierigkeit:</label>
+                            <select  class="form-control" id="categoryInput" name="difficulty" placeholder="Schwierigkeit" [(ngModel)]="searchDifficulty">
+                                <option  [ngValue]="null">Alle</option>
+                                <option *ngFor="let category of values(difficulty)" [value]="category">{{category | difficulty}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <app-recipe [page]="page" [size]="size" [searchName]="searchName" [searchDifficulty]="searchDifficulty" (searchCountChanged)="elementCountChanged($event)"></app-recipe>
+</div>

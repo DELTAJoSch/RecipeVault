@@ -1,0 +1,72 @@
+<div class="mt-3 m-2 col-md-6 mx-auto bg-white border border-beige-light rounded">
+  <h1 class="m-2 col-md-6">Details: </h1>
+  <form id="emailForm" name="emailForm" class="needs-validation" #form="ngForm">
+    <div class="row">
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd"
+               for="email">Email: </label>
+        <span class="form-control border-primary"
+              id="email"
+        > {{user.email}}
+        </span>
+        <div class="invalid-feedback">
+          <!-- This is shown, when the form validation deems the name input to be invalid -->
+          Email ist verpflichtend!
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd"
+               for="password">Passwort:</label>
+        <span class="labelMarginStd"
+              id="password">
+          ********
+        </span>
+        <div class="invalid-feedback">
+          <!-- This is shown, when the form validation deems the name input to be invalid -->
+          Passwort ist verpflichtend
+        </div>
+      </div>
+    </div>
+
+
+    <div class="flex-fill">
+      <!--      <div *ngIf="signup" class="align-items-end">-->
+      <!--        <button type="button" class="btn btn-primary btn-block" (click)="onSubmit(form)">Create Account</button>-->
+      <!--      </div>-->
+
+      <div class="m-2 text-end">
+        <button type="button"
+                class="btn btn-outline-danger btn-block bi bi-trash m-2"
+                (click)="openAddModal(messageAddModal)">
+          Löschen
+        </button>
+
+        <ng-template #messageAddModal let-modal>
+          <div class="modal-header">
+            <h5 class="modal-title">Account löschen?</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" id="close-modal-btn" (click)="modal.dismiss('close')">
+              Abbrechen
+            </button>
+            <button type="button" class="btn btn-danger bi bi-trash" id="delete-modal-btn" (click)="delete()">
+              Löschen
+            </button>
+          </div>
+        </ng-template>
+
+        <button type="button"
+                class="btn btn-primary btn-block text-white "
+                (click)="onEditClick(userId)">
+          Bearbeiten
+        </button>
+      </div>
+
+    </div>
+
+
+  </form>
+</div>

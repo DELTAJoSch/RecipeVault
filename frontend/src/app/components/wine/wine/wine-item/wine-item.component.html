@@ -1,0 +1,60 @@
+<div class="card mb-3" *ngIf="!mobile">
+    <div class="card-body">
+        <div class="d-flex flex-column flex-lg-row">
+            <div class="row flex-fill">
+                <div class="col">
+                    <h4 class="h5">{{wine.name}}</h4>
+                </div>
+                <div class="col">
+                    <span class="badge bg-secondary me-1">{{wine.grape}}</span>
+                    <span class="badge bg-tertiary me-1">{{wine.temperature}}°C</span>
+                    <span class="badge bg-quaternary">{{wine.country}}</span>
+                </div>
+                <div class="col text-end">
+                    <div class="btn-group">
+                        <button class="btn btn-outline-primary" title="Info" [routerLink]="['/wine', wine.id, 'details']">
+                            <i class="bi bi-info-lg"></i>
+                        </button>
+                        <button class="btn btn-outline-secondary" [hidden]="!isPermittedToEdit()" title="Bearbeiten" [routerLink]="['/wine', wine.id, 'edit']">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" [hidden]="!isPermittedToEdit()" title="Löschen" (click)="onDeleteClicked()">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mb-3" *ngIf="mobile">
+    <div class="card-body">
+        <div class="d-flex flex-column flex-lg-row">
+            <div class="row flex-fill">
+                <div class="col">
+                    <h4 class="h5">{{wine.name}}</h4>
+                </div>
+                <div class="col">
+                    <span class="badge bg-secondary me-1">{{wine.grape}}</span>
+                    <span class="badge bg-tertiary me-1">{{wine.temperature}}°C</span>
+                    <span class="badge bg-quaternary">{{wine.country}}</span>
+                </div>
+            </div>
+            <div class="row flex-fill">
+                <div class="col">
+                    <div class="btn-group">
+                        <button class="btn btn-outline-info" title="Info" [routerLink]="[wine.id, 'details']">
+                            <i class="bi bi-info-lg"></i>
+                        </button>
+                        <button class="btn btn-outline-quaternary" title="Bearbeiten" [routerLink]="[wine.id, 'edit']">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <button class="btn btn-outline-danger" title="Löschen" (click)="onDeleteClicked()">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

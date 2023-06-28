@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center">
+  <div class="p-2 ">
+    <button type="button" class="btn btn-secondary searchButton text-white" routerLink="/recipe/">
+      Rezepte durchsuchen
+      <i class="bi bi-search"></i>
+    </button>
+  </div>
+</div>
+
+
+<div id="carouselCaptions" class="carousel slide shadow-lg carouselMargin" #carousel data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div *ngFor="let rec of recipes; let i = index"  [ngClass]="{'active': i === 0}" class="carousel-item" routerLink="/recipe/{{rec.id}}/details">
+      <div class="gradient-container">
+        <img src="{{this.images.get(i)}}" class="d-block w-100" alt="...">
+        <div class="gradient"> </div>
+      </div>
+      <div class="carousel-caption">
+        <h5>{{rec.name}}</h5>
+        <p class="d-none d-md-block">{{getShortDescription(i)}}</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="d-flex justify-content-end fixed-bottom createButton">
+  <div class="p-2 ">
+    <button type="button" class="btn btn-secondary btn-lg" title="Neues Rezept anlegen" routerLink="/recipe/create">
+      <i class="bi bi-plus-circle text-white"></i>
+    </button>
+  </div>
+</div>
+

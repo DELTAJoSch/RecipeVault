@@ -1,0 +1,121 @@
+<div class="card m-2">
+  <form id="wineForm" name="wineForm" class="needs-validation" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="row">
+      <!--recipe name-->
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd" for="nameInput">Name:</label>
+        <input type="text" class="form-control" id="nameInput" name="name" placeholder="Name" [(ngModel)]="recipe.name"
+               required>
+        <div class="invalid-feedback">
+          <!-- This is shown, when the form validation deems the name input to be invalid -->
+          Name is required
+        </div>
+      </div>
+      <!--difficulty-->
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd" for="categoryInput">Kategorie:</label>
+        <select class="form-control" id="categoryInput" name="category" placeholder="Kategorie"
+          [(ngModel)]="recipe.difficulty" required>
+          <option *ngFor="let category of values(difficulty)" [value]="category">{{category | difficulty}}</option>
+        </select>
+      </div>
+      <!--Author-->
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd" for="authorInput">Autor:</label>
+        <app-autocomplete
+          id="authorInput"
+          name="author"
+          class="col-md-10 col-lg-8"
+          textInputClass="form-control"
+          valueNeedsToMatchSuggestion="true"
+          [(ngModel)]="recipe.author"
+          [formatModel]="formatAuthorName"
+          [suggestions]="authorSuggestions">
+        </app-autocomplete>
+      </div>
+    </div>
+    <div class="row">
+      <!--discription-->
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd" for="shortDescriptionTextInput">Beschreibung:</label>
+        <textarea class="form-control" id="shortDescriptionTextInput" rows="6" name="shortDescriptionText"
+          placeholder="Beschreibung" [(ngModel)]="shortDescriptionText"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <!--ingredients:-->
+      <label class="form-label mx-3" for="ingredientInput">Zutaten hinzufügen:</label>
+      <app-recipe-ingredients-item class="flex-fill" id="ingredientInput" aria-label="Ingredients entry"
+        *ngFor="let amount of ingredientsList;" [amount]="amount"
+        (removeIngredient)="deleteIngredientById(amount)" (emptyInput)="removeEmptyIngredient()" >
+      </app-recipe-ingredients-item>
+    </div>
+    <div class="row">
+      <div class="form-group col m-2">
+        <label class="form-label fl-margin" for="personCountInput" >Personenanzahl:</label>
+        <input type="number" min="1" class="form-control" placeholder="Personenanzahl" [(ngModel)]="personCountString" name="personCountInput"/>
+      </div>
+      <div class="form-group col">
+      </div>
+      <div class="form-group col">
+      </div>
+    </div>
+    <div class="row">
+      <!--Guide-->
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd" for="descriptionGuideInput">Anleitung:</label>
+        <textarea class="form-control" id="descriptionGuideInput" rows="12" name="descriptionGuide"
+          placeholder="Anleitung" [(ngModel)]="descriptionGuide" required></textarea>
+      </div>
+    </div>
+    <div class="mt-3 p-2 border rounded border-beige-light">
+      <div class="row">
+        <div class="col">
+          <label class="form-label fl-margin" for="imageInput">Bild:</label>
+        </div>
+        <div class="col">
+          <label *ngIf="imageUrl" class="form-label fl-margin" for="imageInput">Neues Bild: </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" *ngIf="recipe.imageId">
+          <img [src]="imageUrl" *ngIf="imageUrl" class="small-image"/>
+        </div>
+        <div class="col">
+          <img [src]="newImageUrl" *ngIf="newImageUrl" class="small-image"/>
+          <div class="row">
+            <input type="file" id="imageInput" (change)="onFileSelected($event)" accept=".png, .jpeg, .jpg, "/>
+            <label *ngIf="imageToLarge" class="text-danger">Bild ist größer als 20MB</label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="imageUrl" class="row">
+        <div class="col">
+          <label *ngIf="selectedFile">Altes Bild wird beim Speichern überschrieben</label>
+          <div *ngIf="!selectedFile">
+            <button *ngIf="!imageDelete" type="button" class="btn btn-primary btn-block textColor ms-1 mt-2"
+                    (click)="imageDelete = true">
+              Bild löschen
+            </button>
+            <button *ngIf="imageDelete" type="button" class="btn btn-secondary btn-block textColor ms-1 mt-2"
+                    (click)="imageDelete = false">
+              Bild nicht löschen
+            </button>
+            <div class="row">
+              <label *ngIf="imageDelete">Bild wird beim Speichern des Rezeptes gelöscht</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row m-2" *ngIf="create">
+      <button type="submit" class="btn btn-primary btn-block text-white" *ngIf="form.valid">Hinzufügen</button>
+      <button type="submit" class="btn btn-secondary btn-block text-white" *ngIf="!form.valid" [disabled]="true">Hinzufügen</button>
+    </div>
+    <div class="row m-2" *ngIf="!create">
+      <button type="submit" class="btn btn-primary btn-block text-white" *ngIf="form.valid">Speichern</button>
+      <button type="submit" class="btn btn-danger btn-block text-white" *ngIf="!form.valid" [disabled]="true">Speichern</button>
+    </div>
+  </form>
+</div>
+<app-spinner-modal message="KI-Magie" [show]="showSpinner"></app-spinner-modal>

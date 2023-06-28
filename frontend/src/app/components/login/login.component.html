@@ -1,0 +1,71 @@
+<div *ngIf="error" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Authentication problems!</strong> {{ errorMessage }}
+  <button type="button" (click)="vanishError()" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card borderRadius">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="assets/images/imgLogin.jpg"
+                alt="login form" class="img-fluid pictureBorderRadius" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                <form class="form" [formGroup]="loginForm" (keyup.enter)="loginUser()" (ngSubmit)="loginUser()">
+                  <h2 class="text-center">Anmelden</h2>
+
+                  <div class="form-group">
+                    <label class="labelMarginStd form-label" for="inputUsername">Username</label>
+                    <input type="text" name="username" formControlName="username" class="form-control" id="inputUsername"
+                           aria-describedby="usernameHelp" placeholder="Enter username">
+                    <div *ngIf="submitted && loginForm.controls.username.errors" class="error">
+                      <small class="form-text text-warning" *ngIf="loginForm.controls.username.errors.required">Your username is
+                        required!
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="form-group mt-2">
+                    <label class="labelMarginStd form-label" for="password">Passwort</label>
+                    <input type="password" name="password" formControlName="password" class="form-control" id="password"
+                           placeholder="Passwort">
+                    <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+                      <small class="form-text text-warning" *ngIf="loginForm.controls.password.errors.required">Passwort is vorgeschrieben!
+                      </small>
+                      <small class="form-text text-warning" *ngIf="loginForm.controls.password.errors.minlength">Passwort muss mindestens 8 Zeichen lang sein!
+                      </small>
+                    </div>
+                  </div>
+                  <div class="mt-2 d-flex flex-column">
+                    <button type="button" (click)="loginUser()" class="btn btn-primary float-right">Anmelden</button>
+                  </div>
+                  <div class="row line-container">
+                    <div class="col-4">
+                      <div class="line"></div>
+                    </div>
+                    <div class="col">
+                      Oder
+                    </div>
+                    <div class="col-4">
+                      <div class="line"></div>
+                    </div>
+                  </div>
+                  <div class="mt-4 d-flex flex-column">
+                    <a routerLink="/signup" class="btn btn-secondary float-right">Account Erstellen</a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

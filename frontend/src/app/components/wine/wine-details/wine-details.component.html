@@ -1,0 +1,181 @@
+<div class="container" *ngIf="!mobile">
+    <h1 class="my-4">{{wine.name}}</h1>
+
+    <!-- Item Row -->
+    <div class="row">
+        <div class="col-md-8">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 0" src="assets/images/wines/wine_one.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 1" src="assets/images/wines/wine_Two.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 2" src="assets/images/wines/wine_three.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 3" src="assets/images/wines/wine_four.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 4" src="assets/images/wines/wine_five.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 5" src="assets/images/wines/wine_six.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 6" src="assets/images/wines/wine_seven.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 7" src="assets/images/wines/wine_eight.jpg" alt="">
+        </div>
+
+        <div class="col-md-4 info-block">
+            <h2 class="my-3">{{wine.category | wineCategory}}</h2>
+            <h2>Optimale Temperatur: {{wine.temperature}}°C</h2>
+            <h2>Land: {{countryDetails.name}}    <span class="fi fi-{{countryDetails.code | lowercase}}"></span></h2>
+            <p>{{wine.description}}</p>
+            <h3 *ngIf="wine.link !== null && wine.link !== ''">Weitere Infos: <a href="{{wine.link}}">{{wine.link}}</a></h3>
+        </div>
+    </div>
+    <div class="row recommendations" *ngIf="recommendations.length > 0">
+        <div class="col">
+            <h2>Andere Weine der selben Kategorie:</h2>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="row" *ngIf="recommendations.length > 0">
+        <div class="col m-1 other-block" routerLink="/wine/{{recommendations[0].id}}/details" *ngIf="recommendations[0] !== null && recommendations[0] !== undefined">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <h2>{{recommendations[0].name}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[0].country}}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[0].grape}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col m-1" *ngIf="recommendations[0] === null || recommendations[0] === undefined">
+        </div>
+        <div class="col m-1 other-block" routerLink="/wine/{{recommendations[1].id}}/details" *ngIf="recommendations[1] !== null && recommendations[1] !== undefined">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <h2>{{recommendations[1].name}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[1].country}}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[1].grape}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col m-1" *ngIf="recommendations[1] === null || recommendations[1] === undefined">
+        </div>
+        <div class="col m-1 other-block" routerLink="/wine/{{recommendations[2].id}}/details" *ngIf="recommendations[2] !== null && recommendations[2] !== undefined">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <h2>{{recommendations[2].name}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[2].country}}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[2].grape}}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col m-1" *ngIf="recommendations[2] === null || recommendations[2] === undefined">
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="mobile">
+    <h1 class="my-4">{{wine.name}}</h1>
+
+    <!-- Item Row -->
+    <div class="row">
+        <div class="col">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 0" src="assets/images/wines/wine_one.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 1" src="assets/images/wines/wine_Two.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 2" src="assets/images/wines/wine_three.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 3" src="assets/images/wines/wine_four.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 4" src="assets/images/wines/wine_five.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 5" src="assets/images/wines/wine_six.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 6" src="assets/images/wines/wine_seven.jpg" alt="">
+            <img class="img-fluid shadow" *ngIf="randomImageSelector === 7" src="assets/images/wines/wine_eight.jpg" alt="">
+        </div>
+    </div>
+    <div class="row m-1">
+        <div class="col info-block-mobile">
+            <h2 class="my-3">{{wine.category | wineCategory}}</h2>
+            <h2>Optimale Temperatur: {{wine.temperature}}°C</h2>
+            <h2>Land: {{countryDetails.name}}    <span class="fi fi-{{countryDetails.code | lowercase}}"></span></h2>
+            <p>{{wine.description}}</p>
+            <h3 *ngIf="wine.link !== null && wine.link !== ''">Weitere Infos: <a href="{{wine.link}}">{{wine.link}}</a></h3>
+        </div>
+    </div>
+    <div class="row recommendations" *ngIf="recommendations.length > 0">
+        <div class="col">
+            <h2>Andere Weine der selben Kategorie:</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col m-1 other-block" routerLink="/wine/{{recommendations[0].id}}/details" *ngIf="recommendations[0] !== null && recommendations[0] !== undefined">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <h2>{{recommendations[0].name}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[0].country}}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[0].grape}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col m-1 other-block" routerLink="/wine/{{recommendations[1].id}}/details" *ngIf="recommendations[1] !== null && recommendations[1] !== undefined">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <h2>{{recommendations[1].name}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[1].country}}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[1].grape}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-1">
+        <div class="col m-1 other-block" routerLink="/wine/{{recommendations[2].id}}/details" *ngIf="recommendations[2] !== null && recommendations[2] !== undefined">
+            <div class="row">
+                <div class="col text-center mt-3">
+                    <h2>{{recommendations[1].name}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[1].country}}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <h3>{{recommendations[1].grape}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

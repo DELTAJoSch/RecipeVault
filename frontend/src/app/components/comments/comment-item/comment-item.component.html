@@ -1,0 +1,31 @@
+<div class="list-group-item d-flex justify-content-between align-items-start">
+  <div class="ms-2 me-auto">
+  <div>
+      <span class="fw-bold">{{creatorEmail }}</span> •
+      <span class="date px-2">{{com.dateTime | date: 'dd.MMM.y'}}</span> •
+      <span class="date px-2">{{com.dateTime | date: 'hh:mm'}}</span>
+    </div>
+    {{com.content}}
+    </div>
+
+  <span><button *ngIf="isAdmin()" type="button" class="btn btn-outline-primary btn-block justify-content-end"
+          (click)="openAddModal(messageAddModal)">
+    <i class="bi bi-trash-fill"></i>
+  </button>
+    </span>
+
+  <ng-template #messageAddModal let-modal>
+    <div class="modal-header">
+      <h3>Kommentar löschen?</h3>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark" id="close-modal-btn" (click)="modal.dismiss('close')">
+        Abbrechen
+      </button>
+      <button type="button" class="btn btn-danger bi bi-trash" id="delete-modal-btn" (click)="onDelete(); modal.dismiss('close')">
+        Löschen
+      </button>
+    </div>
+  </ng-template>
+</div>
+

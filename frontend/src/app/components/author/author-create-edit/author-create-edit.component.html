@@ -1,0 +1,139 @@
+<div class="card m-2 col-md-6 mx-auto">
+  <h1 *ngIf="!edit" class="m-2 col-md-6">Erstellen</h1>
+  <h1 *ngIf="edit" class="m-2 col-md-6">Bearbeiten</h1>
+  <form id="authorForm" name="authorForm" class="needs-validation" #form="ngForm">
+    <div class="row">
+
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd"
+               for="firstnameInput">
+          Vorname:
+        </label>
+        <input type="text"
+               class="form-control"
+               id="firstnameInput"
+               name="firstname"
+               placeholder="Vorname"
+               [(ngModel)]="author.firstname" required>
+        <div class="invalid-feedback">
+          <!-- This is shown when the form validation deems the name input to be invalid -->
+          Vorname notwendig
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd"
+               for="lastnameInput">Nachname:</label>
+        <input type="text"
+               class="form-control"
+               id="lastnameInput"
+               name="lastname"
+               placeholder="Nachname"
+               [(ngModel)]="author.lastname" required>
+        <div class="invalid-feedback">
+          <!-- This is shown, when the form validation deems the name input to be invalid -->
+          Nachname notwendig
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group m-2 col">
+        <label class="form-label labelMarginStd" for="descriptionInput">Beschreibung:</label>
+        <textarea class="form-control"
+                  id="descriptionInput"
+                  name="description"
+                  placeholder="Beschreibung"
+                  [(ngModel)]="author.description">
+        </textarea>
+      </div>
+    </div>
+
+    <div class="mt-3 p-2 border rounded border-beige-light">
+      <div class="row">
+        <div class="col">
+          <label class="form-label" for="imageInput" style="margin-left: 0.5rem;">Bild:</label>
+        </div>
+        <div class="col">
+          <label *ngIf="imageUrl" class="form-label" for="imageInput" style="margin-left: 0.5rem;">Neues Bild: </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" *ngIf="author.imageId">
+          <img [src]="imageUrl" *ngIf="imageUrl" class="small-image"/>
+        </div>
+        <div class="col">
+          <img [src]="newImageUrl" *ngIf="newImageUrl" class="small-image"/>
+          <div class="row">
+            <input type="file" id="imageInput" (change)="onFileSelected($event)" accept=".png, .jpeg, .jpg, "/>
+            <label *ngIf="imageToLarge" class="text-danger">Bild ist größer als 20MB</label>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="imageUrl" class="row">
+        <div class="col">
+          <label *ngIf="selectedFile">Altes Bild wird beim Speichern überschrieben</label>
+          <div *ngIf="!selectedFile">
+            <button *ngIf="!imageDelete" type="button" class="btn btn-primary btn-block textColor ms-1 mt-2"
+                    (click)="imageDelete = true">
+              Bild löschen
+            </button>
+            <button *ngIf="imageDelete" type="button" class="btn btn-secondary btn-block textColor ms-1 mt-2"
+                    (click)="imageDelete = false">
+              Bild nicht löschen
+            </button>
+            <div class="row">
+              <label *ngIf="imageDelete">Bild wird beim Speichern des Rezeptes gelöscht</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="m-2 alignButtonLeft">
+        <button type="button"
+                class="btn btn-secondary"
+                (click)="onCancelClick()">
+          Abbrechen
+        </button>
+      </div>
+      <div class="m-2 text-end">
+        <button *ngIf="edit && calledByAdmin"
+                type="button"
+                class="btn btn-danger btn-block bi bi-trash m-2"
+                (click)=openAddModal(messageAddModal)>
+          Löschen
+        </button>
+
+        <ng-template #messageAddModal let-modal>
+          <div class="modal-header">
+            <h5 class="modal-title">Autor löschen?</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-dark" id="close-modal-btn" (click)="modal.dismiss('close')">
+              Abbrechen
+            </button>
+            <button type="button" class="btn btn-danger bi bi-trash" id="delete-modal-btn" (click)="delete()">
+              Löschen
+            </button>
+          </div>
+        </ng-template>
+
+
+        <button type="button"
+                id="submit"
+                class="btn btn-primary m-2"
+                [disabled]="false"
+                (click)="onSubmit(form)">
+          {{edit ? 'Speichern' : 'Erstellen'}}
+        </button>
+
+      </div>
+    </div>
+
+
+  </form>
+</div>

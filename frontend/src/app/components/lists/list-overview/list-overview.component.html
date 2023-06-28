@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+  <button class="btn btn-primary col createButton text-white" data-bs-toggle="modal"
+          data-bs-target="#newListModal">Neue Liste erstellen
+  </button>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-11">
+      <select class="form-select selectList select-option"
+              #selectList
+              (change)='onOptionsSelected(selectList.value)'
+              aria-label="Liste auswählen">
+        <option selected>Liste auswählen</option>
+        <option *ngFor="let list of lists;" value={{list.name}}>{{list.name}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <button class="btn btn-danger col deleteButton" type="button" title="Löschen"
+              *ngIf="this.listName !== 'Liste auswählen' && this.listName !== undefined" (click)="deleteList()">
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container-pagination"  *ngIf="this.listName !== 'Liste auswählen' && this.listName !== undefined" >
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-secondary" (click)="onPreviousClick()" title="Vorherige Seite"><i class="bi bi-caret-left"></i></button>
+    </div>
+    <div class="col text-center">
+      <p>SEITE {{page + 1}} | ELEMENT {{getElementLowerBound()}}-{{getElementUpperBound()}}</p>
+    </div>
+    <div class="col float-end text-end">
+      <button class="btn btn-outline-secondary" (click)="onNextClick()" title="Nächste Seite"><i class="bi bi-caret-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<div>
+  <app-list [page]="page" [size]="size" (countChanged)="onCountChanged($event)" [listName]=this.listName></app-list>
+</div>
+
+
+<div class="modal fade" id="newListModal" tabindex="-1" role="dialog" aria-labelledby="Neue Liste" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="newListModalTitle">Neue Liste erstellen</h5>
+        <button type="button" class="close btn" data-bs-dismiss="modal" aria-label="Close" (click)="clearInput()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" #nameInput placeholder="Name" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="clearInput()">Abbrechen</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="createList(nameInput.value)">
+          Erstellen
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

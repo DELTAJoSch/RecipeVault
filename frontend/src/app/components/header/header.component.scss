@@ -1,0 +1,127 @@
+#HeaderComponentSCSS {
+  position: center;
+  width: 1920px;
+  height: 107px;
+  left: 0;
+  top: 0;
+  overflow: visible;
+  --web-scale-to-fit: true;
+  --web-scale-to-fit-type: width;
+  --web-scale-on-resize: true;
+  --web-enable-deep-linking: true;
+}
+
+$header-height: 80px;
+
+#headerBar {
+  fill: #EBFFFE;
+  width: 100%;
+  height: $header-height;
+}
+
+.headerBar {
+  position: center;
+  overflow: visible;
+  width: 100%;
+  height: 107px;
+  left: 0;
+  top: 0;
+}
+
+#Icon {
+  fill: rgba(242, 233, 220, 1);
+}
+
+.Iconfield_1 {
+  position: absolute;
+  overflow: visible;
+  width: 60px;
+  height: 60px;
+  left: 1457px;
+  top: 25px;
+}
+
+.Iconfield_2 {
+  position: absolute;
+  overflow: visible;
+  width: 60px;
+  height: 60px;
+  left: 1557px;
+  top: 25px;
+}
+
+.Iconfield_3 {
+  position: absolute;
+  overflow: visible;
+  width: 60px;
+  height: 60px;
+  left: 1657px;
+  top: 25px;
+}
+
+.Iconfield_4 {
+  position: absolute;
+  overflow: visible;
+  width: 60px;
+  height: 60px;
+  left: 1757px;
+  top: 25px;
+}
+
+#RecipeVault {
+  overflow: visible;
+  text-align: left;
+  margin-right: auto;
+  margin-left: 1rem;
+  font-family: "Dubai-Medium", serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3.5rem;
+  color: rgba(242,233,220,1);
+}
+
+.header-divider {
+  border-left:2px solid #F2E9DC66;
+  border-right:2px solid #F2E9DC66;
+  background-color: #F2E9DC66;
+  height:50px;
+  right:249px;
+  margin-left: 0.8rem;
+  margin-right: 0.8rem;
+  top:10px;
+}
+
+.mobile-divider {
+  border-top:1px solid #F2E9DC66;
+  border-bottom:1px solid #F2E9DC66;
+  background-color: #F2E9DC66;
+  width:15rem;
+  right:249px;
+  top:10px;
+}
+
+.navbar-overlay {
+  align-content: center;
+  justify-content: center;
+  background: #fdaf49;
+  color: #F2E9DC;
+  top: 100%;
+  display: block;
+  white-space: nowrap;
+  left: 0;
+  font-size:large;
+  padding: 0.5rem;
+  text-align: center;
+  position: absolute;
+  width: 18rem;
+  border-bottom-right-radius: 0.5rem;
+  z-index: 10;
+}
+
+.widthUserDropdown {
+  min-width: 12rem;
+}
+
+.fontSize {
+  font-size: x-large;
+}

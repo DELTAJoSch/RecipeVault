@@ -1,0 +1,17 @@
+<div class="pageView">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-secondary" (click)="onPreviousClick()" title="Vorherige Seite" ><i class="bi bi-caret-left"></i></button>
+    </div>
+    <div class="col text-center">
+      <p>SEITE {{page + 1}} | ELEMENT {{getElementLowerBound()}}-{{getElementUpperBound()}}</p>
+    </div>
+    <div class="col float-end text-end">
+      <button class="btn btn-outline-secondary" (click)="onNextClick()" title="Nächste Seite" ><i class="bi bi-caret-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<div>
+  <app-favorites [page]="page" [size]="size" (countChanged)="onCountChanged()" ></app-favorites>
+</div>

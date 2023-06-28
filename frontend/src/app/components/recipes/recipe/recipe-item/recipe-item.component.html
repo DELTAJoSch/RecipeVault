@@ -1,0 +1,35 @@
+<div class="card shadow h-100" xmlns="http://www.w3.org/1999/html">
+  <div class="container img-container">
+    <img src="{{imgSrc}}" class="card-img-top" alt=""  [routerLink]="['/recipe', recipe.id, 'details']">
+    <button *ngIf="!recipe.favorite" c class="btn btn-circle nonFavorite btn-favorite" (click)="addToFavorites()">
+      <i class="bi bi-star"> </i>
+    </button>
+    <button *ngIf="recipe.favorite" class="btn btn-circle btn-favorite"  (click)="removeFromFavorites()">
+      <i  class="bi bi-star-fill"> </i>
+    </button>
+    <button *ngIf="isInList" class="btn btn-circle btn-list" (click)="removeFromList()">
+      <i  class="bi bi-x-lg"> </i>
+    </button>
+  </div>
+  <div class="card-body"  [routerLink]="['/recipe', recipe.id, 'details']">
+    <h5 class="card-title fo">{{recipe.name}}</h5>
+    <p class="card-text">{{getShortDescription()}}</p>
+  </div>
+  <div class="card-footer container">
+    <div class="row">
+      <div class="col d-flex align-items-center">
+        <i class="bi bi-bar-chart-fill">
+        </i>
+        <span> {{recipe.difficulty | difficulty}} </span>
+      </div>
+      <div class="btn-group btn-group-sm col ms-auto" [hidden]="!isPermittedToEdit()">
+        <button class="btn btn-sm btn-outline-secondary" [routerLink]="['/recipe', recipe.id, 'edit']">
+          <i class="bi bi-pencil"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-danger" (click)="onDeleteClicked()">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

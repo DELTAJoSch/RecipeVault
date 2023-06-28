@@ -1,0 +1,25 @@
+<div class="pageView">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-primary" (click)="onPreviousClick()" title="Vorherige Seite"><i
+        class="bi bi-caret-left"></i></button>
+    </div>
+    <div class="col text-center">
+      <p>SEITE {{page + 1}} | ELEMENT {{getElementLowerBound()}}-{{getElementUpperBound()}}</p>
+    </div>
+    <div class="col float-end text-end">
+      <button class="btn btn-outline-primary" (click)="onNextClick()" title="Nächste Seite"><i
+        class="bi bi-caret-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<div>
+  <app-user-list [page]="page" [size]="size" (searchCountChanged)="elementCountChanged($event)"></app-user-list>
+</div>
+
+<div class="text-end">
+  <button type="button" class="btn btn-primary btn-block pull-right" routerLink="/signup">
+    Neuen Benutzer erstellen
+  </button>
+</div>

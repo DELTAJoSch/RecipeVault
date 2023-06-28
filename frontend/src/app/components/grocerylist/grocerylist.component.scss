@@ -1,0 +1,24 @@
+@import "../../../styles";
+
+#groceryListItem {
+  font-size: 1.25rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 2px solid $color-accent-light;
+  border-radius: 5px;
+  background-color: $color-white;
+}
+
+#groceryListItem > a {
+  text-decoration: none;
+  color: black;
+  line-height: 1.75;
+}
+
+.d-flex {
+  margin-top: 1rem;
+}
+
+.localPortionInput {
+  max-width: 30%;
+}

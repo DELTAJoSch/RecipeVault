@@ -1,0 +1,51 @@
+.carousel-caption > h5{
+  font-size: 3rem;
+  padding: 0.75rem;
+  @media screen and (max-width: 1200px) {
+    font-size: 2rem;
+    line-height: 2rem;
+  }
+  @media screen and (max-width: 750px) {
+    padding: 0;
+    font-size: 1.5rem;
+  }
+}
+.carousel-caption > p{
+  font-size: 1.5rem;
+  padding: 0.75rem;
+  @media screen and (max-width: 1200px) {
+    font-size: 1rem;
+  }
+}
+.carousel-caption{
+  opacity:1;
+}
+
+.carouselMargin {
+  margin: auto
+}
+
+
+img {
+  position:relative;
+  z-index:-1;
+}
+
+.gradient {
+  position: absolute;
+  width: 100%;
+  height: 25rem;
+  bottom: 0;
+  background-image: linear-gradient(180deg, rgba(20,20,20,0), rgba(20,20,20,1));
+  opacity: 1;
+}
+
+.searchButton {
+  padding: 0.75rem;
+  max-width: 20rem
+}
+
+.createButton {
+  margin: 2rem;
+}
+

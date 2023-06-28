@@ -1,0 +1,11 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+  <app-recipe-item class="col" *ngFor="let recipe of recipes"
+                   [recipe] = "recipe" [isInFavorites] = "false" [isInList] = "true" [listName] = "listName"
+                   [@visibleHidden]="'visible'" (delete)="onEntryDelete(recipe)"></app-recipe-item>
+</div>
+
+
+
+
+
+

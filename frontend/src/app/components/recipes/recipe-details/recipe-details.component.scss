@@ -1,0 +1,143 @@
+.recipe_details_area {
+  padding-top: 100px;
+
+  @media screen and (max-width: 768px) {
+    padding-top: 50px;
+  }
+  @media screen and (max-width: 320px) {
+    padding-top: 100px;
+  }
+
+  .recipes_thumb {
+    margin-bottom: 60px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .recipes_info {
+    padding-left: 30px;
+    padding-top: 30px;
+    @media screen and (max-width: 768px) {
+      padding-left: 0px;
+      margin-bottom: 30px;
+    }
+    @media screen and (max-width: 320px) {
+      padding-left: 0px;
+    }
+
+    h1 {
+      font-size: 30px;
+      color: #222222;
+      margin-bottom: 23px;
+    }
+
+    p {
+      color: #777777;
+      font-size: 14px;
+    }
+
+    .recipes_details {
+      margin-bottom: 30px;
+
+      ul {
+        li {
+          p {
+            color: #777777;
+            margin-bottom: 0;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 24px;
+
+            strong {
+              width: 100px;
+              color: #000000;
+              font-size: 14px;
+              font-weight: 300;
+              display: inline-block;
+            }
+
+            i {
+              color: #ffcc00;
+            }
+          }
+        }
+      }
+    }
+
+    .links {
+      padding-bottom: 20px;
+
+      a {
+        color: #cccccc;
+        font-size: 14px;
+        margin-right: 10px;
+
+        &:hover {
+          color: #000;
+        }
+      }
+    }
+  }
+
+  .recipes_ingredients {
+    margin-bottom: 30px;
+
+    p {
+      color: #777777;
+      margin-bottom: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 10px;
+
+      strong {
+        width: 100px;
+        line-height: 1rem;
+        color: #000000;
+        font-size: 14px;
+        font-weight: 300;
+        display: inline-block;
+      }
+
+      i {
+        color: #ffcc00;
+      }
+
+
+    }
+  }
+
+  .recipes_text {
+    p {
+      font-size: 14px;
+      color: #777777;
+      line-height: 30px;
+      margin-bottom: 30px;
+      white-space: pre-wrap;
+
+      &:last-child {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .notes {
+    p{
+      padding: 20px;
+      white-space: pre-wrap;
+      background-color: var(--color-accent-light);
+      font-size: 1rem;
+      line-height: 30px;
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .routerLinkActive {
+    cursor: pointer;
+  }
+}

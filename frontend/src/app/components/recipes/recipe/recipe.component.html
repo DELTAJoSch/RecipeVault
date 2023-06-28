@@ -1,0 +1,5 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+    <app-recipe-item class="col" aria-label="Recipe entry" *ngFor="let recipe of recipes;" [recipe]="recipe"
+                     [isInFavorites] = "false" [isInList] = "false"
+                     (delete)="onEntryDelete(recipe)" [@visibleHidden]="'visible'"></app-recipe-item>
+</div>

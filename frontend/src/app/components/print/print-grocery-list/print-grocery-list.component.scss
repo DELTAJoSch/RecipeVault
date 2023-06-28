@@ -1,0 +1,28 @@
+@import "../../../../styles";
+
+ul {
+  margin-top: 1rem;
+  list-style: none;
+  font-size: 20px;
+}
+
+h1 {
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+li {
+  margin: 0.75rem;
+  white-space: pre-wrap;
+}
+
+.toggleButton {
+  margin-top: 0.15rem;
+}
+
+.container > .sticky-note{
+  max-width: 50rem;
+  background-color: $color-sticky-note;
+  border: $color-sticky-note-border 2px solid;
+  box-shadow: -2px 2px 10px 0 rgba(0, 0, 0, 0.5);
+}

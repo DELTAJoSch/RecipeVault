@@ -1,0 +1,20 @@
+<div>
+  <form id="commentForm" name="commentForm" #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <input type="text" class="form-control" id="commentText" name="name" placeholder="Kommentar hinzufügen..." [(ngModel)]="created.content" required>
+    <div class="invalid-feedback">
+      <!-- This is shown, when the form validation deems the name input to be invalid -->
+      Comment is required
+    </div>
+
+    <div class="submitButton">
+      <button type="submit" class="btn btn-primary btn-block" *ngIf="form.valid">Posten</button>
+      <button type="submit" class="btn btn-outline-primary btn-block" *ngIf="!form.valid" [disabled]="true">Posten</button>
+    </div>
+  </form>
+</div>
+
+<div *ngFor="let comment of comments">
+  <hr/>
+  <app-comment-item [com]='comment' (deleted)="delete($event)"></app-comment-item>
+</div>
+<hr/>

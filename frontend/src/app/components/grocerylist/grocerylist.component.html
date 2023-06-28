@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="d-flex justify-content-around flex-wrap">
+    <div class="p-2 flex-grow-1">
+      <select class="form-select selectList select-option"
+              #selectList
+              (change)='onOptionsSelected(selectList.value)'
+              aria-label="Liste auswählen" >
+        <option selected>Liste auswählen</option>
+        <option *ngFor="let list of lists;" value={{list.name}}>{{list.name}}</option>
+      </select>
+    </div>
+    <div class="p-2"  *ngIf="this.listName !== 'Liste auswählen' && this.listName !== undefined">
+      <input class="form-control globalPortionsInput" name="globalPortions" #globalPortions
+             value="{{globalPortions}}"
+             (input)="onGlobalPortionsSet(this.globalPortions.value)"
+             type="number" placeholder="Portionen">
+  </div>
+    <div class="p-2 ">
+      <button class="btn btn-outline-primary" title="Drucken"  type="button"
+              *ngIf="this.listName !== 'Liste auswählen' && this.listName !== undefined"
+      (click)="generateGroceryList()">
+        <i class="bi bi-printer"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <ul class="list list-unstyled">
+    <li *ngFor="let rec of recipes; let i = index"  [@visibleHidden]="'visible'">
+      <div id="groceryListItem" class="d-flex justify-content-between">
+         <a [routerLink]="['../recipe/' + rec.id + '/details']">{{rec.name}} </a>
+        <input class="form-control localPortionInput" name="localPortion" #localPortions
+               value="{{localPortion[i]}}"
+               (input)="onLocalPortionSet(localPortions.value, i)"
+               type="number" placeholder="Portionen">
+      </div>
+    </li>
+  </ul>
+</div>

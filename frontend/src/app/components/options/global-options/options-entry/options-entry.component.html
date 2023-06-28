@@ -1,0 +1,20 @@
+<td class="text-center align-middle">{{option.name}}</td>
+<td class="text-center align-middle">{{option.type}}</td>
+<td class="text-center align-middle">{{option.defaultValue}}</td>
+<td class="text-center align-middle" *ngIf="!edit">{{option.value}}</td>
+<td class="text-center align-middle" *ngIf="edit && option.type === types.boolean">
+    <select  class="form-control" id="categoryInput" name="category" placeholder="BOOLEAN" [(ngModel)]="editValue" required>
+        <option [value]="'TRUE'">TRUE</option>
+        <option [value]="'FALSE'">FALSE</option>
+    </select>
+</td>
+<td class="text-center align-middle" *ngIf="edit && option.type === types.shortRange"><input type="number" min="0" max="255" step="1" [(ngModel)]="editValue"></td>
+<td class="text-center align-middle" *ngIf="edit && option.type === types.longRange"><input type="number" min="0" max="65535" step="1" [(ngModel)]="editValue"></td>
+<td class="text-center align-middle" *ngIf="edit && option.type === types.string"><input type="text" [(ngModel)]="editValue" maxlength="255"></td>
+<td class="text-center align-middle" *ngIf="!edit"><button class="btn btn-outline-primary" title="Bearbeiten" (click)="changeEdit()"><i class="bi bi-pencil"></i></button></td>
+<td class="text-center align-middle" *ngIf="edit">
+    <div class="btn-group">
+        <button class="btn btn-outline-success" (click)="accept()" title="Anwenden"><i class="bi bi-check"></i></button>
+        <button class="btn btn-outline-danger" (click)="revoke()" title="Abbrechen"><i class="bi bi-x"></i></button>
+    </div>
+</td>

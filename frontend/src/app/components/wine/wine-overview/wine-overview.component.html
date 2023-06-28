@@ -1,0 +1,65 @@
+<div class="pageView">
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-outline-primary" (click)="onPreviousClick()" title="Vorherige Seite"><i class="bi bi-caret-left"></i></button>
+        </div>
+        <div class="col text-center">
+            <p>SEITE {{page + 1}} | ELEMENT {{getElementLowerBound()}}-{{getElementUpperBound()}}</p>
+        </div>
+        <div class="col float-end text-end">
+            <button class="btn btn-outline-primary" (click)="onNextClick()" title="Nächste Seite"><i class="bi bi-caret-right"></i></button>
+        </div>
+    </div>
+</div>
+<div class="elementSearch">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col text-center">
+            <div class="btn-group">
+                <button class="btn btn-outline-primary" (click)="toggleSearch()" >Suche <i class="bi bi-search"></i></button>
+                <button class="btn btn-primary" [routerLink]="['create']"><i class="bi bi-plus-circle text-white"></i></button>
+            </div>
+        </div>
+        <div class="col float-end text-end">
+        </div>
+    </div>
+    <div class="card searchForm" *ngIf="searchIsVisible" [@visibleHidden]="searchIsVisible ? 'search-visible' : 'search-hidden'">
+        <div class="row">
+            <div class="col">
+                <form id="wineForm" name="wineForm" class="needs-validation" #form="ngForm">
+                    <div class="row">
+                        <div class="form-group m-2 col">
+                            <label class="form-label labelMarginStd" for="nameInput">Name:</label>
+                            <input type="text" class="form-control" id="nameInput" name="name" placeholder="Name" [(ngModel)]="searchName">
+                        </div>
+                        <div class="form-group m-2 col">
+                            <label class="form-label labelMarginStd" for="categoryInput">Kategorie:</label>
+                            <select  class="form-control" id="categoryInput" name="category" placeholder="Kategorie" [(ngModel)]="searchCategory">
+                                <option  [ngValue]="null">Alle</option>
+                                <option *ngFor="let category of values(categories)" [value]="category">{{category | wineCategory}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group m-2 col-8">
+                            <label class="form-label labelMarginStd" for="vinyardInput">Weingut:</label>
+                            <input type="text" class="form-control" id="vinyardInput" name="vinyard" placeholder="Weingut" [(ngModel)]="searchVinyard" required>
+                        </div>
+                        <div class="form-group m-2 col">
+                            <label class="form-label labelMarginStd" for="countryInput">Land:</label>
+                            <select  class="form-control" id="countryInput" placeholder="Land" name="country" [(ngModel)]="searchCountry">
+                                <option [ngValue]="null">Alle</option>
+                                <option *ngFor="let country of countryList" [value]="country.code">{{country.name}} </option>
+                            </select>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <app-wine [page]="page" [size]="size" [searchName]="searchName" [searchCategory]="searchCategory" [searchVinyard]="searchVinyard" [searchCountry]="searchCountry" (searchCountChanged)="elementCountChanged($event)"></app-wine>
+</div>

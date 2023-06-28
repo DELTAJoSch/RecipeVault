@@ -1,0 +1,103 @@
+<div class="container" *ngIf="!mobile">
+  <h1 class="my-4">{{author.firstname + ' ' + author.lastname}}</h1>
+
+  <!-- Item Row -->
+  <div class="row">
+    <div class="col-md-8 info-block">
+      <p class="my-2">{{author.description}}</p>
+    </div>
+    <div class="col-md-4">
+      <img class="img-fluid shadow m-5" [src]="imageUrl" *ngIf="imageUrl" alt="">
+    </div>
+
+
+  </div>
+
+  <div>
+    <div class="my-3 text-end">
+      <button *ngIf="calledByAdmin"
+              type="button"
+              class="btn btn-danger btn-block bi bi-trash m-2"
+              (click)=openAddModal(messageAddModal)>
+        Löschen
+      </button>
+
+      <ng-template #messageAddModal let-modal>
+        <div class="modal-header">
+          <h5 class="modal-title">Autor löschen?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark" id="close-modal-btn" (click)="modal.dismiss('close')">
+            Abbrechen
+          </button>
+          <button type="button" class="btn btn-danger bi bi-trash" id="delete-modal-btn"
+                  (click)="delete(); modal.dismiss('close')">
+            Löschen
+          </button>
+        </div>
+      </ng-template>
+
+
+      <button type="button"
+              id="submit"
+              class="btn btn-primary btn-block"
+              [disabled]="false"
+              (click)="onEditClick()">
+        Autor Bearbeiten
+      </button>
+
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="mobile">
+  <h1 class="my-4">{{author.firstname + ' ' + author.lastname}}</h1>
+
+  <!-- Item Row -->
+  <div class="row">
+    <div class="col">
+      <img class="img-fluid shadow" [src]="imageUrl" *ngIf="imageUrl" alt="">
+    </div>
+  </div>
+  <div class="row m-1">
+    <div class="col info-block-mobile">
+      <p class="my-2">{{author.description}}</p>
+    </div>
+  </div>
+
+  <div class="col m-2 mt-3 text-end">
+    <button type="button"
+            id="submit-mobile"
+            class="btn btn-primary btn-block "
+            [disabled]="false"
+            (click)="onEditClick()">
+      Autor Bearbeiten
+    </button>
+
+  </div>
+  <div class="col m-2 text-end">
+    <button *ngIf="calledByAdmin"
+            type="button"
+            class="btn btn-danger btn-block bi bi-trash"
+            (click)=openAddModal(messageAddModal)>
+      Autor Löschen
+    </button>
+
+    <ng-template #messageAddModal let-modal>
+      <div class="modal-header">
+        <h5 class="modal-title">Autor löschen?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" id="close-modal-btn-mobile" (click)="modal.dismiss('close')">
+          Abbrechen
+        </button>
+        <button type="button" class="btn btn-danger bi bi-trash" id="delete-modal-btn-mobile"
+                (click)="delete(); modal.dismiss('close')">
+          Löschen
+        </button>
+      </div>
+    </ng-template>
+  </div>
+
+
+</div>

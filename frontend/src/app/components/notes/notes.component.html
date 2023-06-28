@@ -1,0 +1,20 @@
+<form id="notes" name="notes" #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="row">
+    <div class="form-group m-4 col">
+      <textarea class="form-control" rows="12" name="content"
+                placeholder="Notizen machen..." [(ngModel)]="note.content" required></textarea>
+      <div class="invalid-feedback">
+        <!-- This is shown, when the form validation deems the name input to be invalid -->
+        Inhalt ist erforderlich
+      </div>
+    </div>
+  </div>
+
+  <div class="row m-2">
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close [disabled]="!form.valid" type="submit" class="btn btn-primary btn-block">
+        Hinzufügen
+      </button>
+    </mat-dialog-actions>
+  </div>
+</form>

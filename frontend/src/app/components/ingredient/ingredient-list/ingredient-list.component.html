@@ -1,0 +1,6 @@
+<div class="mt-4  align-content-start justify-center">
+  <div class="" *ngFor="let ingredient of ingredients;">
+    <app-ingredient-item class="flex-fill flex-row" aria-label="Ingredient entry" [ingredient]="ingredient" (delete)="onEntryDelete(ingredient)" [@visibleHidden]="'visible'"></app-ingredient-item>
+    <div class="break"></div>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+// Frontend Colors
+$color-prim: #F96900;
+$color-sec: #ff9811;
+$color-ter: #ffb030;
+$color-quat: #e7bb1c;
+$color-succ: #129335;
+$color-warn: #ffaf19;
+$color-err: #c43727;
+$color-info: #1E928A;
+$color-light: #e5e5e5;
+$color-white: #fdfdfd;
+$color-dark: #343434;
+$color-body: #fff9f2;
+$color-accent-light: #fdaf49;
+$color-sticky-note: #FFF7D5;
+$color-sticky-note-border: #FFF1B4;
+
+:root
+{
+  --color-prim: #F96900;
+  --color-sec: #ff9811;
+  --color-ter: #ffb030;
+  --color-quat: #e7bb1c;
+  --color-accent-light: #fdaf49;
+  --color-sticky-note: #FFF7D5;
+  --color-sticky-note-border: #FFF1B4;
+}
+
+@font-face {
+  font-family: "Dubai";
+  src: local("Dubai"), url(./assets/fonts/Dubai/DubaiW23-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Dubai-Bold";
+  src: local("Dubai-Bold"), url(./assets/fonts/Dubai/DubaiW23-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Dubai-Light";
+  src: local("Dubai-Light"), url(./assets/fonts/Dubai/DubaiW23-Light.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Dubai-Medium";
+  src: local("Dubai-Medium"), url(./assets/fonts/Dubai/DubaiW23-Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Zilla Slab";
+  src: local("Zilla Slab"), url(./assets/fonts/Zilla_Slab/ZillaSlab-Regular.ttf) format("truetype");
+}
+
+$variable-prefix: bs-;
+$font-family-sans-serif: 'Dubai-Bold', sans-serif;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base: var(--#{$variable-prefix}font-sans-serif);
+$font-family-base: var(--#{$variable-prefix}font-monospace);
+
+$theme-colors: (
+  "primary": $color-prim,
+  "secondary": $color-sec,
+  "tertiary": $color-ter,
+  "quaternary": $color-quat,
+  "warning": $color-warn,
+  "info": $color-info,
+  "success": $color-succ,
+  "danger": $color-err,
+  "light": $color-light,
+  "dark": $color-dark,
+  "accent-light": $color-accent-light,
+  "white": $color-white
+) !default;
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "/node_modules/flag-icons/css/flag-icons.min.css";
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "ngx-toastr/toastr-bs5-alert";
+
+.bg-accent-light {
+  background-color: $color-light;
+}
+
+body {
+  background-color: $color-body !important;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "Dubai", Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-dialog-container {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.labelMarginStd {
+  margin-left: 0.5rem;
+}
+
+.borderRadius {
+  border-radius: 1rem;
+}
+
+.cardSize {
+  min-width: 18rem;
+  min-height: 10rem;
+  max-width: 40rem
+}
+
+.pageView {
+  margin-top: 2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.elementSearch {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.searchForm{
+  margin-top: 0.5rem;
+}
+
+

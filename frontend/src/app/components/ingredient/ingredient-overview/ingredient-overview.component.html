@@ -1,0 +1,50 @@
+<div class="pageView">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-outline-primary" (click)="onPreviousClick()" title="Vorherige Seite"><i class="bi bi-caret-left"></i></button>
+    </div>
+    <div class="col text-center">
+      <p>SEITE {{page + 1}} | ELEMENT {{getElementLowerBound()}}-{{getElementUpperBound()}}</p>
+    </div>
+    <div class="col float-end text-end">
+      <button class="btn btn-outline-primary" (click)="onNextClick()" title="Nächste Seite"><i class="bi bi-caret-right"></i></button>
+    </div>
+  </div>
+</div>
+<div class="elementSearch">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col text-center">
+      <div class="btn-group">
+        <button class="btn btn-outline-primary" (click)="toggleSearch()" >Suche <i class="bi bi-search"></i></button>
+      </div>
+    </div>
+    <div class="col float-end text-end">
+    </div>
+  </div>
+  <div class="card searchForm" *ngIf="searchIsVisible" [@visibleHidden]="searchIsVisible ? 'search-visible' : 'search-hidden'">
+    <div class="row">
+      <div class="col">
+        <form id="ingredientForm" name="ingredientForm" class="needs-validation" #form="ngForm">
+          <div class="row">
+            <div class="form-group m-2 col">
+              <label class="form-label" for="nameInput">Name:</label>
+              <input type="text" class="form-control" id="nameInput" name="name" placeholder="Name" [(ngModel)]="searchName">
+            </div>
+            <div class="form-group m-2 col">
+              <label class="form-label" for="categoryInput">Kategorie:</label>
+              <select  class="form-control" id="categoryInput" name="category" placeholder="Kategorie" [(ngModel)]="searchCategory">
+                <option  [ngValue]="null">Alle</option>
+                <option *ngFor="let category of values(categories)" [value]="category">{{category | ingredientMatchingCategory}}</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <app-ingredient-list [page]="page" [size]="size" [searchName]="searchName" [searchCategory]="searchCategory" (searchCountChanged)="elementCountChanged($event)"></app-ingredient-list>
+</div>

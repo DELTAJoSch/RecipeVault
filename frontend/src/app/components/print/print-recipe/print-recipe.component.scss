@@ -1,0 +1,21 @@
+@import "src/styles.scss";
+
+.difficulty {
+  background-color: #f5b87b;
+  border-width: 0.2rem;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: $color-prim;
+}
+
+.persons {
+  background-color: #fed592;
+  border-width: 0.2rem;
+  border-radius: 1rem;
+  border-style: solid;
+  border-color: $color-ter;
+}
+
+.desc {
+  white-space: pre-wrap;
+}

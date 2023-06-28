@@ -1,0 +1,54 @@
+<form class="mat-dialog-container" id="ingredientSuggestions" name="ingredientSuggestions" #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="row">
+    <div class="form-group m-3 col">
+      <label class="form-label" for="nameInput">
+        Name:
+      </label>
+      <input type="text"
+             class="form-control"
+             id="nameInput"
+             name="name"
+             placeholder="Name"
+             [(ngModel)]="ingredient.name" required>
+      <div class="invalid-feedback">
+        <!-- This is shown, when the form validation deems the name input to be invalid -->
+        Name is required
+      </div>
+    </div>
+    <div class="form-group m-3 col">
+      <label class="form-label" for="categoryInput">
+        Kategorie:
+      </label>
+      <select  class="form-control"
+               id="categoryInput"
+               name="category"
+               placeholder="Kategorie"
+               [(ngModel)]="ingredient.category" required>
+        <option *ngFor="let category of values(categories)" [value]="category">{{category | ingredientMatchingCategory}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row m-2">
+    <mat-dialog-actions class="col">
+      <div *ngIf="!modeSwitch" class="form-group col text-center m-1">
+      <button mat-button mat-dialog-close [disabled]="!form.valid" type="submit" class="btn btn-primary btn-block text-white">
+        Hinzufügen
+      </button>
+      </div>
+      <div *ngIf="modeSwitch" class="form-group col text-center m-1">
+      <button mat-button mat-dialog-close [disabled]="!form.valid" (click)="onUpdate(form)" class="btn btn-primary btn-block text-white">
+        Erneuern
+      </button>
+      </div>
+      <div class="form-group text-end col text-center">
+      <button mat-button mat-dialog-close class="btn btn-primary btn-block text-white">
+        Abbrechen
+      </button>
+      </div>
+    </mat-dialog-actions>
+    <div class="col ms-4">
+      <span class="align-middle ms-1">{{ingredient.category | ingredientCategoryExample}}</span>
+    </div>
+  </div>
+</form>

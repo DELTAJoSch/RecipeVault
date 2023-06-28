@@ -1,0 +1,69 @@
+<div class="card mb-3" *ngIf="!mobile">
+  <div class="card-body">
+    <div class="d-flex flex-column flex-lg-row">
+      <div class="row flex-fill">
+        <div class="col">
+          <h4 class="h5">{{user.email}}</h4>
+        </div>
+        <div class="col">
+          <h4 class="h5">********</h4>
+        </div>
+        <div class="col text-end">
+          <div class="btn-group">
+            <button class="btn btn-outline-secondary" data-toggle="tooltip" title="Bearbeiten" (click)="onEditClick()">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-outline-danger" title="Löschen" (click)="openAddModal(messageAddModal)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3" *ngIf="mobile">
+  <div class="card-body">
+    <div class="d-flex flex-column flex-lg-row">
+      <div class="row flex-fill">
+        <div class="col">
+          <h4 class="h5">{{user.email}}</h4>
+        </div>
+        <div class="col">
+          <h4 class="h5">********</h4>
+        </div>
+      </div>
+
+      <div class="row flex-fill">
+        <div class="col">
+          <div class="btn-group">
+            <button class="btn btn-outline-secondary" data-toggle="tooltip" title="Bearbeiten" (click)="onEditClick()">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-outline-danger" title="Löschen" (click)="openAddModal(messageAddModal)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #messageAddModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Account löschen?</h5>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-dark" id="close-modal-btn" (click)="modal.dismiss('close')">
+      Abbrechen
+    </button>
+    <button type="button" class="btn btn-danger bi bi-trash" id="delete-modal-btn" (click)="deleteUser()">
+      Löschen
+    </button>
+  </div>
+</ng-template>

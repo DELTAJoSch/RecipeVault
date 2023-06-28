@@ -1,0 +1,15 @@
+.appear {
+    position: absolute;
+    z-index: 3;
+    padding-top: 1rem;
+    top: 5rem;
+    padding-bottom: 1rem;
+    align-content: start;
+    justify-content: start;
+    background: #ff9811DD;//#fdaf49;
+    color: #F2E9DC;
+    min-width: 5rem;
+    text-align: center;
+    border-bottom-right-radius: 0.5rem; 
+    border-bottom-left-radius: 0.5rem;
+}

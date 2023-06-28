@@ -1,0 +1,44 @@
+<div class="pageView">
+    <div class="row">
+        <div class="col">
+            <div class="btn-group" *ngIf="isMobile()">
+                <button class="btn btn-outline-primary" (click)="onPreviousClick()" title="Vorherige Seite" ><i class="bi bi-caret-left"></i></button>
+                <button class="btn btn-outline-secondary" *ngIf="!mobileExpanded" (click)="expandToggle()" title="Info" ><i class="bi bi-info-circle"></i></button>
+                <button class="btn btn-outline-tertiary" *ngIf="mobileExpanded" (click)="expandToggle()" title="Info" ><i class="bi bi-info-circle"></i></button>
+            </div>
+            <button *ngIf="!isMobile()" class="btn btn-outline-primary" (click)="onPreviousClick()" title="Vorherige Seite"><i class="bi bi-caret-left"></i></button>
+        </div>
+        <div class="col text-center">
+            <p>SEITE {{page + 1}} | ELEMENT {{getElementLowerBound()}}-{{getElementUpperBound()}}</p>
+        </div>
+        <div class="col float-end text-end">
+            <button class="btn btn-outline-primary" (click)="onNextClick()" title="Nächste Seite"><i class="bi bi-caret-right"></i></button>
+        </div>
+    </div>
+    <div class="row" *ngIf="isMobile() && mobileExpanded">
+        <div class="col mt-1">
+            <div class="card p-3" [innerHTML]="recommendedCategory | wineCategoryInfoPipe | stringToHtml">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="elementSearch">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col text-center">
+        </div>
+        <div class="col float-end text-end">
+        </div>
+    </div>
+</div>
+<app-wine *ngIf="isMobile()" [page]="page" [size]="size" [searchCategory]="recommendedCategory" (searchCountChanged)="elementCountChanged($event)"></app-wine>
+<div class="row" *ngIf="!isMobile()">
+    <div class="col-4">
+        <div class="p-3" [innerHTML]="recommendedCategory | wineCategoryInfoPipe | stringToHtml">
+        </div>
+    </div>
+    <div class="col">
+        <app-wine [page]="page" [size]="size" [searchCategory]="recommendedCategory" (searchCountChanged)="elementCountChanged($event)"></app-wine>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="spinner-container" *ngIf="show">
+    <div class="container">
+        <div class="row">
+            <div id="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="loading"></div>
+            </div>
+        
+            <div class="spinner-progress" *ngIf="progress && progress >= 0" [style.width.%]="progPercentage" [style.visibility]="progPercentage < 0.2 ? 'hidden' : 'visible'"></div>
+            <p class="spinner-message" *ngIf="message && message !== ''">
+                {{message}}
+            </p>
+        </div>
+    </div>
+</div>

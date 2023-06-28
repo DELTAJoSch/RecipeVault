@@ -1,0 +1,50 @@
+<div class="card mb-3" *ngIf="!mobile">
+  <div class="card-body">
+    <div class="d-flex flex-column flex-lg-row">
+      <div class="row flex-fill">
+        <div class="col">
+          <h4 class="h5">{{ingredient.name}}</h4>
+        </div>
+        <div class="col">
+          <span class="badge bg-secondary me-1">{{ingredient.category | ingredientMatchingCategory}}</span>
+        </div>
+        <div class="col text-end">
+          <div *ngIf="isAdmin()" class="btn-group">
+            <button class="btn btn-outline-secondary" title="Bearbeiten" (click)="onUpdateClicked()">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-outline-danger" title="Löschen" (click)="onDeleteClicked()">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card mb-3" *ngIf="mobile">
+  <div class="card-body">
+    <div class="d-flex flex-column flex-lg-row">
+      <div class="row flex-fill">
+        <div class="col">
+          <h4 class="h5">{{ingredient.name}}</h4>
+        </div>
+        <div class="col">
+          <span class="badge bg-secondary me-1">{{ingredient.category}}</span>
+        </div>
+      </div>
+      <div class="row flex-fill">
+        <div class="col">
+          <div *ngIf="isAdmin()" class="btn-group">
+            <button class="btn btn-outline-secondary" title="Bearbeiten" (click)="onUpdateClicked()">
+              <i class="bi bi-pencil"></i>
+            </button>
+            <button class="btn btn-outline-danger" title="Löschen" (click)="onDeleteClicked()">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

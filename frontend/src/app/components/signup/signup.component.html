@@ -1,0 +1,126 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card borderRadius">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+              <img src="assets/images/imgLogin.jpg"
+                   alt="login form" class="img-fluid borderRadius"/>
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+                <h1 *ngIf="signup" class="m-2 col-md-6">Account erstellen</h1>
+                <h1 *ngIf="!signup" class="m-2 col-md-6">Account bearbeiten</h1>
+                <form id="emailForm" name="emailForm" class="needs-validation" #form="ngForm" (ngSubmit)="signUp(user)">
+                  <div class="row">
+                    <div class="form-group m-2 col">
+                      <label class="form-label labelMarginStd"
+                             for="emailInput">
+                        Email:
+                      </label>
+                      <input type="text"
+                             class="form-control"
+                             id="emailInput"
+                             name="email"
+                             placeholder="Email"
+                             [(ngModel)]="user.email" required>
+                      <div class="invalid-feedback">
+                        <!-- This is shown, when the form validation deems the name input to be invalid -->
+                        Email wird benötigt
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group m-2 col">
+                      <label class="form-label labelMarginStd"
+                             for="password">
+                        Passwort:</label>
+                      <input type="password"
+                             class="form-control"
+                             id="password"
+                             name="password"
+                             placeholder="Passwort"
+                             (keyup)="checkPass()"
+                             [(ngModel)]="user.password">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group m-2 col">
+                      <label class="form-label labelMarginStd"
+                             for="password">
+                        Passwort:</label>
+                      <input type="password"
+                             class="form-control"
+                             id="repeatPassword"
+                             name="repeatPassword"
+                             placeholder="Passwort wiederholen"
+                             (keyup)="checkPass()"
+                             [(ngModel)]="repeatPassword">
+                    </div>
+                  </div>
+
+                  <div class="row text-center">
+                    <span *ngIf="submitDisable" class="text-danger"> Passwörter stimmen nicht überein</span>
+                  </div>
+
+                  <div *ngIf="calledByAdmin" class="row">
+                    <div class="form-group col m-2">
+                      <label class="form-label labelMarginStd"
+                             for="admin">Zum Admin machen:
+                      </label>
+                      <input type="checkbox"
+                             class="labelMarginStd"
+                             id="admin"
+                             name="admin"
+                             [(ngModel)]="user.admin">
+                    </div>
+                  </div>
+
+                  <div class="m-2 text-end">
+                    <button type="button"
+                            class="btn btn-outline-warning m-1 alignButtonLeft"
+                            (click)="onCancelClick()">
+                      Abbrechen
+                    </button>
+                    <button *ngIf="!signup"
+                            type="button"
+                            class="btn btn-danger btn-block bi bi-trash m-1"
+                            (click)="openAddModal(messageAddModal)">
+                      Löschen
+                    </button>
+                    <ng-template #messageAddModal let-modal>
+                      <div class="modal-header">
+                        <h5 class="modal-title">Account löschen?</h5>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-dark" id="close-modal-btn"
+                                (click)="modal.dismiss('close')">
+                          Abbrechen
+                        </button>
+                        <button type="button" class="btn btn-danger bi bi-trash" id="delete-modal-btn"
+                                (click)="delete(user.id)">
+                          Löschen
+                        </button>
+                      </div>
+                    </ng-template>
+                    <button type="button"
+                            id="submit"
+                            class="btn btn-success btn-block m-1"
+                            [disabled]="submitDisable"
+                            (click)="onSubmit(form)">
+                      {{signup ? 'Erstellen' : 'Updaten'}}
+                    </button>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

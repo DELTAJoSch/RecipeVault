@@ -1,0 +1,175 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-accent-light" id = "headerBar">
+  <button class="ms-2 btn btn-outline-accent-light" type="button" *ngIf="isMobile" (click)="collapsedToggle()" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" id="RecipeVault" href="">RecipeVault</a>
+
+  <div class="collapse navbar-collapse justify-content-end fontSize" *ngIf="!isMobile">
+
+
+    <app-header-dropdown [name]="'Rezepte & Wein'" *ngIf="authService.isLoggedIn()" (toggled)="dropdownChanged($event)" [toggle]="dropdownChangeSubject" [tag]="'recipe'">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/recipe'" [icon]="'search'" [text]="'Rezeptsuche'"></app-header-entry>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/recipe/create'" [icon]="'plus-circle'" [text]="'Rezept anlegen'"></app-header-entry>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/ocr/upload'" [icon]="'camera'" [text]="'Rezept aus Dokument einlesen'"></app-header-entry>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/wine'" [icon]="'droplet-half'" [text]="'Wein'"></app-header-entry>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/ingredients'" [icon]="'card-text'" [text]="'Zutaten'"></app-header-entry>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/author'" [icon]="'book  '" [text]="'Autoren'"></app-header-entry>
+        </li>
+      </ul>
+    </app-header-dropdown>
+
+    <!-- Divide Header between normal entries and favorites / lists -->
+    <div class="header-divider" *ngIf="authService.isLoggedIn()"></div>
+    <app-header-dropdown [name]="'Listen'" *ngIf="authService.isLoggedIn()" (toggled)="dropdownChanged($event)" [toggle]="dropdownChangeSubject" [tag]="'lists'">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/favorites'" [icon]="'heart'" [text]="'Favoriten'"></app-header-entry>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+             <app-header-entry [routerLink]="'/list'" [icon]="'list-stars'" [text]="'Listen'"></app-header-entry>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/grocerylist'" [icon]="'bag'" [text]="'Einkaufsliste'"></app-header-entry>
+        </li>
+      </ul>
+    </app-header-dropdown>
+
+
+    <!-- Divide Header between normal entries and management entries -->
+    <div class="header-divider" *ngIf="authService.isLoggedIn() && authService.isAdmin()"></div>
+    <app-header-dropdown [name]="'Admin'" *ngIf="authService.isLoggedIn()  && authService.isAdmin()" (toggled)="dropdownChanged($event)" [toggle]="dropdownChangeSubject" [tag]="'admin'">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/users'" [icon]="'people'" [text]="'Nutzer'"></app-header-entry>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <app-header-entry [routerLink]="'/options'" [icon]="'gear-fill'" [text]="'optionen'"></app-header-entry>
+        </li>
+      </ul>
+    </app-header-dropdown>
+
+    <!-- Divide Header between normal entries and logout entries -->
+    <div class="header-divider" *ngIf="authService.isLoggedIn()"></div>
+    <app-header-dropdown class="me-2 widthUserDropdown" [name]="authService.getUserEmail()" *ngIf="authService.isLoggedIn()" (toggled)="dropdownChanged($event)" [toggle]="dropdownChangeSubject" [tag]="'account'" [showExpandState]="false">
+      <ul class="navbar-nav">
+        <app-header-entry (clicked)="onClickAccountDetails()" [icon]="'person-circle'" [text]="'BENUTZER'"></app-header-entry>
+      </ul>
+      <ul class="navbar-nav">
+        <app-header-entry *ngIf="authService.isLoggedIn()" (clicked)="authService.logoutUser()" [routerLink]="'/login'" [icon]="'door-open'" [text]="'Log Out'"></app-header-entry>
+      </ul>
+    </app-header-dropdown>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <app-header-entry *ngIf="!authService.isLoggedIn()" [routerLink]="'/login'" [alwaysVisible]="true"  [icon]="'door-closed'" [text]="'login'"></app-header-entry>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- Mobile Layout -->
+  <div class="navbar-overlay fontSize" *ngIf="isMobile && !isCollapsed" [@visibleHidden]="isCollapsed ? 'hidden' : 'visible'">
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry [routerLink]="'/recipe'" [icon]="'search'" [text]="'Rezeptsuche'"></app-header-entry>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry [routerLink]="'/recipe/create'" [icon]="'plus-circle'" [text]="'Rezept anlegen'"></app-header-entry>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry [routerLink]="'/wine'" [icon]="'droplet-half'" [text]="'Wein'"></app-header-entry>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry [routerLink]="'/ocr/upload'" [icon]="'camera'" [text]="'OCR'"></app-header-entry>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry [routerLink]="'/ingredients'" [icon]="'card-text'" [text]="'Zutaten'"></app-header-entry>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry *ngIf="authService.isLoggedIn()" [routerLink]="'/author'" [icon]="'person'" [text]="'Author'"></app-header-entry>
+      </li>
+    </ul>
+
+    <!-- Divide Header between normal entries and favorites / lists -->
+    <div class="mobile-divider" *ngIf="authService.isLoggedIn()"></div>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry [routerLink]="'/favorites'" [icon]="'heart'" [text]="'Favoriten'"></app-header-entry>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+           <app-header-entry [routerLink]="'/list'" [icon]="'list-stars'" [text]="'Listen'"></app-header-entry>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+          <app-header-entry [routerLink]="'/grocerylist'" [icon]="'list'" [text]="'Einkaufsliste'"></app-header-entry>
+      </li>
+    </ul>
+
+    <!-- Divide Header between normal entries and management entries -->
+    <div class="mobile-divider" *ngIf="authService.isLoggedIn() && authService.isAdmin()"></div>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry [routerLink]="'/users'" *ngIf="authService.isAdmin()" [icon]="'people'" [text]="'Nutzer'"></app-header-entry>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry [routerLink]="'/options'" *ngIf="authService.isAdmin()" [icon]="'gear-fill'" [text]="'optionen'"></app-header-entry>
+      </li>
+    </ul>
+
+    <!-- Divide Header between normal entries and logout entries -->
+    <div class="mobile-divider" *ngIf="authService.isLoggedIn()"></div>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry (clicked)="onClickAccountDetails()" [icon]="'person-circle'" [text]="'Account'"></app-header-entry>
+      </li>
+    </ul>
+    <ul class="navbar-nav ms-1">
+      <li class="nav-item text-start">
+        <app-header-entry *ngIf="!authService.isLoggedIn()" [routerLink]="'/login'" [alwaysVisible]="true"  [icon]="'door-closed'" [text]="'login'"></app-header-entry>
+        <app-header-entry *ngIf="authService.isLoggedIn()" (clicked)="authService.logoutUser()" [routerLink]="'/login'" [icon]="'door-open'" [text]="'logout'"></app-header-entry>
+      </li>
+    </ul>
+  </div>
+</nav>

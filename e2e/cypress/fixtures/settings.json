@@ -1,0 +1,7 @@
+{
+  "adminUser": "admin@example.com",
+  "adminPw": "password",
+  "user": "user@example.com",
+  "pw": "password",
+  "baseUrl": "localhost:4200"
+}
