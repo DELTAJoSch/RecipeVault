@@ -45,7 +45,7 @@ public class DefaultOcrEngine implements OcrEngine {
     public DefaultOcrEngine() {
         tesseract = new Tesseract();
 
-        apiKey = "067e8c73-6835-4337-88b6-611a011a3307";
+        apiKey = "KEY_HERE";
         modelUuid = "b899fe6e-8c8d-465a-a395-b43ed13a127f";
         try {
             textToJsonUrl = new URI(
